@@ -1,39 +1,43 @@
 # 🎨 Rogel's Portfolio
 
-> A modern, minimalist portfolio showcasing web development projects and IoT solutions with stunning animations and seamless user experience.
+> A modern, minimalist portfolio showcasing web development projects and IoT solutions with stunning animations, 3D experiences, and a seamless user interface.
 
 [![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen?style=for-the-badge)](https://rodjdevsec.vercel.app)
+
+![Portfolio Preview](assets/img/preview.png)
 
 ---
 
 ## 📋 About This Portfolio
 
-This is a **fully responsive digital portfolio** built to showcase my journey as an **Information Technology student** and **full-stack developer**, highlighting projects ranging from **IoT systems** to **modern web applications**. The portfolio features:
+This is a **fully responsive digital portfolio** built to highlight my journey as an **Information Technology student** and **full-stack developer**. It showcases projects ranging from **IoT systems** to **modern web applications** with a focus on immersive user experiences.
 
-- 🌟 **Premium Design** - Dark mode aesthetic with glassmorphism and smooth animations
-- ⚡ **Performance Optimized** - Fast loading with optimized assets and lazy loading
-- 📱 **Fully Responsive** - Seamless experience across all devices
-- 🎭 **Interactive UI** - Engaging animations powered by GSAP
-- 🎯 **Modern Stack** - Built with cutting-edge web technologies
+### Key Features:
+- 🌟 **Premium Design** - Dark mode aesthetic with glassmorphism and smooth animations.
+- 🧊 **3D Gallery** - An immersive 3D photo gallery built with **Three.js** and gyroscope support for mobile.
+- 🎙️ **Voice Message** - Interactive voice introduction on the About page.
+- ⚡ **Performance Optimized** - Fast loading with optimized assets and clean architecture.
+- 📱 **Fully Responsive** - Tailored experience for both desktop and mobile users.
+- 🎭 **Interactive UI** - Engaging animations powered by **GSAP** and **ScrollTrigger**.
+- 🎯 **Modern Stack** - Minimalist and maintainable codebase.
 
 ---
 
 ## 🛠️ Tech Stack
 
-### Frontend
+### Languages & Frameworks
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 ![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
 
-### Libraries & Animation
+### Libraries & 3D
 ![GSAP](https://img.shields.io/badge/GSAP-88CE02?style=for-the-badge&logo=greensock&logoColor=white)
-![ScrollTrigger](https://img.shields.io/badge/ScrollTrigger-88CE02?style=for-the-badge&logo=greensock&logoColor=white)
+![Three.js](https://img.shields.io/badge/Three.js-black?style=for-the-badge&logo=three.js&logoColor=white)
 
-### Design & Typography
-![Google Fonts](https://img.shields.io/badge/Google_Fonts-4285F4?style=for-the-badge&logo=google&logoColor=white)
-- **Inter** - Body text and clean readability
-- **Space Grotesk** - Headings and bold statements
+### Security & Deployment
+![Cloudflare Turnstile](https://img.shields.io/badge/Turnstile-F38020?style=for-the-badge&logo=cloudflare&logoColor=white)
+![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
 
 ---
 
@@ -45,17 +49,26 @@ portfolio/
 │   └── send-message.js    # Secure form submission & Turnstile verification
 ├── assets/                # Media & static assets
 │   ├── cert/              # Certification images
-│   ├── img/               # UI icons, backgrounds & assets
-│   └── [project-folders]  # Media for specific projects (Poultry-Fi, Travouge, etc.)
+│   ├── dlh/               # DLH project assets
+│   ├── img/               # UI icons, backgrounds & assets (e.g. preview.png, hero-bg.png)
+│   ├── poultryfi/          # Poultry-Fi project assets
+│   ├── travouge/          # Travouge project assets
+│   ├── whereintapat/      # WhereInTapat project assets
+│   ├── vm.m4a             # Voice Message audio file
+│   └── Rogel Jhon A Belinario - Resume.pdf
 ├── css/                   # Styling
 │   └── styles.css         # Custom styles & Tailwind utilities
 ├── js/                    # JavaScript modules
-│   ├── main.js            # Application entry & routing
-│   ├── ui.js              # UI component logic (Modals, Nav)
 │   ├── animations.js      # GSAP & ScrollTrigger logic
-│   └── data.js            # Project & certificate data
+│   ├── config.js          # App configuration
+│   ├── data.js            # Project & certificate data
+│   ├── events.js          # UI event handlers
+│   ├── main.js            # Application entry & routing
+│   └── ui.js              # UI component logic (Modals, Nav)
 ├── index.html             # Landing page / Home
-├── projects.html          # Detailed projects collection
+├── about.html             # About me, Experience & Education
+├── gallery.html           # 3D Immersive Photo Gallery
+├── projects.html          # Detailed projects collection (Live Preview)
 ├── certificates.html      # Professional certifications gallery
 ├── contactform.html       # Interactive contact page with Turnstile
 ├── thankyou.html          # Form submission confirmation page
@@ -72,17 +85,11 @@ git clone https://github.com/rodjdevsec/portfolio.git
 # Navigate to the project directory
 cd portfolio
 
-# Open in browser
-# Simply open index.html in your preferred browser
-# Or use a local server (recommended):
-
-# Using VS Code Live Server
-# Right-click on index.html → "Open with Live Server"
+# Use Vercel CLI for local development with API support
+vercel dev
 ```
 
-
 ---
-
 
 <div align="center">
 
@@ -90,6 +97,6 @@ cd portfolio
 
 **Made with ❤️ by Rogel Jhon Belinario**
 
-*© 2025 Rogel Jhon. All rights reserved.*
+*© 2026 Rogel Jhon. All rights reserved.*
 
 </div>

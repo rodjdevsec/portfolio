@@ -31,68 +31,76 @@
         </a>
     </nav>
 
-    <main class="relative z-10 flex-grow flex items-start justify-center px-4 pt-4 md:pt-10 pb-12">
-        <div class="w-full max-w-2xl">
-            <div class="mb-8">
-                <h1 class="text-4xl md:text-5xl font-heading font-bold tracking-tight mb-2">LET'S <span
-                        class="text-zinc-500 italic">CONNECT</span></h1>
-                <p class="text-zinc-400 text-xs md:text-sm leading-relaxed">
-                    Have a project in mind or just want to say hi? Feel free to send me a message.
+    <main class="relative z-10 flex-grow flex items-center justify-center px-4 py-12 md:py-20">
+        <div class="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-20 items-center -mt-16 md:-mt-12">
+
+            <div class="space-y-6">
+                <h1
+                    class="text-3xl md:text-7xl lg:text-8xl font-heading font-bold tracking-tight leading-tight md:leading-[0.85]">
+                    LET'S <span class="hidden md:inline"><br></span> <span class="text-zinc-500 italic">CONNECT</span>
+                </h1>
+                <p class="text-zinc-400 text-sm md:text-base leading-relaxed max-w-md">
+                    Have a project in mind or just want to say hi? Send me a message and I'll get back to you as soon as
+                    possible.
                 </p>
             </div>
 
-            <form id="contact-form" action="/api/send-message" method="POST" class="space-y-5">
+            <div class="relative -mt-8 md:mt-0">
+                <div class="absolute -inset-4 bg-white/[0.02] rounded-3xl blur-2xl pointer-events-none"></div>
+                <form id="contact-form" action="/api/send-message" method="POST"
+                    class="relative bg-zinc-900/30 backdrop-blur-sm border border-white/5 p-6 md:p-10 rounded-3xl space-y-4">
 
-                <input type="text" name="_gotcha" style="display:none">
+                    <input type="text" name="_gotcha" style="display:none">
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                    <div class="space-y-1.5">
-                        <label for="name" class="text-[10px] uppercase tracking-widest text-zinc-500 ml-1">Full
-                            Name</label>
-                        <input type="text" id="name" name="name" required placeholder="John Doe"
-                            class="w-full bg-zinc-900/50 border border-zinc-800 focus:border-white p-4 rounded-lg outline-none transition-colors text-sm">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="space-y-1">
+                            <label for="name" class="text-[9px] uppercase tracking-widest text-zinc-500 ml-1">Full
+                                Name</label>
+                            <input type="text" id="name" name="name" required placeholder="John Doe"
+                                class="w-full bg-zinc-900/50 border border-zinc-800 focus:border-white p-3 rounded-lg outline-none transition-colors text-xs">
+                        </div>
+                        <div class="space-y-1">
+                            <label for="email" class="text-[9px] uppercase tracking-widest text-zinc-500 ml-1">Email
+                                Address</label>
+                            <input type="email" id="email" name="email" required placeholder="john@example.com"
+                                class="w-full bg-zinc-900/50 border border-zinc-800 focus:border-white p-3 rounded-lg outline-none transition-colors text-xs">
+                        </div>
                     </div>
-                    <div class="space-y-1.5">
-                        <label for="email" class="text-[10px] uppercase tracking-widest text-zinc-500 ml-1">Email
-                            Address</label>
-                        <input type="email" id="email" name="email" required placeholder="john@example.com"
-                            class="w-full bg-zinc-900/50 border border-zinc-800 focus:border-white p-4 rounded-lg outline-none transition-colors text-sm">
+
+                    <div class="space-y-1">
+                        <label for="subject"
+                            class="text-[9px] uppercase tracking-widest text-zinc-500 ml-1">Subject</label>
+                        <input type="text" id="subject" name="subject" required placeholder="How can I help you?"
+                            class="w-full bg-zinc-900/50 border border-zinc-800 focus:border-white p-3 rounded-lg outline-none transition-colors text-xs">
                     </div>
-                </div>
 
-                <div class="space-y-1.5">
-                    <label for="subject"
-                        class="text-[10px] uppercase tracking-widest text-zinc-500 ml-1">Subject</label>
-                    <input type="text" id="subject" name="subject" required placeholder="How can I help you?"
-                        class="w-full bg-zinc-900/50 border border-zinc-800 focus:border-white p-4 rounded-lg outline-none transition-colors text-sm">
-                </div>
+                    <div class="space-y-1">
+                        <label for="message"
+                            class="text-[9px] uppercase tracking-widest text-zinc-500 ml-1">Message</label>
+                        <textarea id="message" name="message" required rows="3"
+                            placeholder="Tell me about your project..."
+                            class="w-full bg-zinc-900/50 border border-zinc-800 focus:border-white p-3 rounded-lg outline-none transition-colors text-xs resize-none"></textarea>
+                    </div>
 
-                <div class="space-y-1.5">
-                    <label for="message"
-                        class="text-[10px] uppercase tracking-widest text-zinc-500 ml-1">Message</label>
-                    <textarea id="message" name="message" required rows="4" placeholder="Tell me about your project..."
-                        class="w-full bg-zinc-900/50 border border-zinc-800 focus:border-white p-4 rounded-lg outline-none transition-colors text-sm resize-none"></textarea>
-                </div>
+                    <div class="flex flex-col items-center gap-2 py-1">
+                        <div class="cf-turnstile" data-sitekey="0x4AAAAAACYH8WVfG8O0moc1" data-theme="dark"
+                            data-size="normal" data-callback="onTurnstileSuccess"></div>
+                        <p id="captcha-hint" class="text-[8px] uppercase tracking-widest text-zinc-600">Complete
+                            security check</p>
+                    </div>
 
-                <div class="flex flex-col items-center gap-3 py-2">
-                    <div class="cf-turnstile" data-sitekey="0x4AAAAAACYH8WVfG8O0moc1" data-theme="dark"
-                        data-size="normal" data-callback="onTurnstileSuccess"></div>
-                    <p id="captcha-hint" class="text-[9px] uppercase tracking-widest text-zinc-600">Please complete the
-                        security check</p>
-                </div>
-
-                <button type="submit" id="submit-btn" disabled
-                    class="group w-full bg-white text-black font-bold py-4 rounded-lg uppercase tracking-widest text-xs hover:bg-zinc-200 transition-all flex items-center justify-center gap-3 disabled:opacity-20 disabled:cursor-not-allowed">
-                    Send Message
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                        stroke-linecap="round" stroke-linejoin="round"
-                        class="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform">
-                        <line x1="7" y1="17" x2="17" y2="7"></line>
-                        <polyline points="7 7 17 7 17 17"></polyline>
-                    </svg>
-                </button>
-            </form>
-        </div>
+                    <button type="submit" id="submit-btn" disabled
+                        class="group w-full bg-white text-black font-bold py-3 md:py-4 rounded-xl uppercase tracking-widest text-[10px] md:text-[11px] hover:bg-zinc-200 transition-all flex items-center justify-center gap-2 md:gap-3 disabled:opacity-20 disabled:cursor-not-allowed">
+                        Send Message
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
+                            class="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform">
+                            <line x1="7" y1="17" x2="17" y2="7"></line>
+                            <polyline points="7 7 17 7 17 17"></polyline>
+                        </svg>
+                    </button>
+                </form>
+            </div>
     </main>
 
     <script>

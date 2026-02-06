@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const shouldScrollToCerts = sessionStorage.getItem('scrollToCerts');
     const shouldScrollToProjects = sessionStorage.getItem('scrollToProjects');
     const shouldScrollToContact = sessionStorage.getItem('scrollToContact');
+    const shouldScrollToAbout = sessionStorage.getItem('scrollToAbout');
 
     if (shouldScrollToCerts) {
         sessionStorage.removeItem('scrollToCerts');
@@ -28,6 +29,12 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
             const contactSection = document.getElementById('contact');
             if (contactSection) contactSection.scrollIntoView();
+        }, 100);
+    } else if (shouldScrollToAbout) {
+        sessionStorage.removeItem('scrollToAbout');
+        setTimeout(() => {
+            const aboutSection = document.getElementById('about');
+            if (aboutSection) aboutSection.scrollIntoView();
         }, 100);
     } else {
         window.scrollTo(0, 0);

@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About</title>
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='25' fill='%23000000'/><text x='50%25' y='55%25' dominant-baseline='middle' text-anchor='middle' fill='%23FFFFFF' font-family='Arial, sans-serif' font-weight='900' font-size='60'>R</text></svg>">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body class="selection:bg-zinc-800 selection:text-white bg-black text-white">
+
+    <div class="fixed inset-0 z-[60] pointer-events-none opacity-[0.03] noise-bg"></div>
+    <div class="fixed inset-0 z-0 pointer-events-none radial-bg"></div>
+
+    <nav
+        class="absolute top-0 left-0 w-full z-[90] flex justify-end items-center px-6 py-6 md:px-12 md:py-8 mix-blend-difference">
+        <a href="index" id="back-to-home" onclick="sessionStorage.setItem('scrollToAbout', 'true');"
+            class="group flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.3em] text-white/50 hover:text-white transition-colors">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                stroke-linecap="round" stroke-linejoin="round" class="group-hover:-translate-x-1 transition-transform">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            Back
+        </a>
+    </nav>
+
+    <main class="relative z-10 px-4 md:px-12 pt-16 md:pt-32 pb-24 md:pb-32 min-h-screen">
+        <div class="max-w-4xl mx-auto">
+            <header class="mb-10 md:mb-24 relative">
+                <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 md:gap-8">
+                    <div>
+                        <h1
+                            class="text-4xl md:text-8xl font-heading font-bold tracking-tighter leading-none mb-4 md:mb-8">
+                            ALL ABOUT <br class="hidden md:block">
+                            <span class="text-zinc-800">ROGEL</span>
+                        </h1>
+                        <div class="w-16 md:w-20 h-1 bg-white"></div>
+                    </div>
+
+                    <div class="flex flex-row md:flex-col gap-6 items-center md:items-end">
+                        <!-- Voice Message Button -->
+                        <div class="flex items-center gap-3 md:gap-4 group cursor-pointer" id="vm-trigger">
+                            <div class="relative w-10 h-10 md:w-12 md:h-12 flex items-center justify-center">
+                                <div class="absolute inset-0 bg-white/10 rounded-full animate-ping group-hover:bg-white/20 transition-colors"
+                                    id="vm-pulse"></div>
+                                <div
+                                    class="relative w-8 h-8 md:w-10 md:h-10 bg-white text-black rounded-full flex items-center justify-center hover:scale-110 transition-transform">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" id="vm-icon">
+                                        <path d="M8 5v14l11-7z" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="flex flex-col mt-1">
+                                <span
+                                    class="text-[9px] md:text-[10px] uppercase tracking-widest text-zinc-500 font-bold">Voice
+                                    Message</span>
+                                <span class="text-[10px] md:text-xs text-white/50" id="vm-status">Click to play</span>
+                            </div>
+                        </div>
+
+                        <!-- Gallery Button -->
+                        <a href="gallery.html" class="flex items-center gap-3 md:gap-4 group cursor-pointer">
+                            <div class="relative w-10 h-10 md:w-12 md:h-12 flex items-center justify-center">
+                                <div
+                                    class="relative w-8 h-8 md:w-10 md:h-10 bg-zinc-900 border border-zinc-700 text-zinc-400 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform group-hover:bg-white group-hover:text-black">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path
+                                            d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z">
+                                        </path>
+                                        <circle cx="12" cy="13" r="4"></circle>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="flex flex-col mt-1">
+                                <span
+                                    class="text-[9px] md:text-[10px] uppercase tracking-widest text-zinc-500 font-bold">Life
+                                    in Frames</span>
+                                <span
+                                    class="text-[10px] md:text-xs text-white/50 group-hover:text-white transition-colors">View
+                                    Gallery</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <audio id="vm-audio" src="assets/vm.m4a"></audio>
+            </header>
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-20">
+                <div class="md:col-span-8 space-y-12">
+                    <section>
+                        <h2 class="text-xs uppercase tracking-[0.4em] text-zinc-500 mb-6 font-bold">Biography</h2>
+                        <div class="space-y-6 text-zinc-300 leading-relaxed text-sm md:text-base">
+                            <p>
+                                Hello! I'm Rogel Jhon A. Belinario, a dedicated Information Technology student at
+                                Pateros Technological College. My journey in the world of technology is driven by a
+                                deep passion for problem-solving and creating meaningful digital experiences.
+                            </p>
+                            <p>
+                                I specialize in web and mobile development, with a growing expertise in IoT systems
+                                and Cybersecurity. Being a Dean's Lister, I maintain a high standard of academic
+                                excellence while actively pursuing professional certifications from industry
+                                leaders like Cisco.
+                            </p>
+                            <p>
+                                My approach to development focuses on accessibility, performance, and clean
+                                aesthetics. I believe that technology should not only be functional but also
+                                delightful and intuitive to use.
+                            </p>
+                        </div>
+                    </section>
+
+                    <section class="pt-10 border-t border-white/5">
+                        <h2 class="text-[10px] uppercase tracking-[0.4em] text-zinc-500 mb-4 md:mb-6 font-bold">Personal
+                            Goal</h2>
+                        <p class="text-zinc-300 leading-relaxed text-sm md:text-base">
+                            My ultimate goal is to become a skilled Web Developer, Cybersecurity Specialist, and Ethical
+                            Hacker.
+                            I am constantly learning and adapting to new technologies, ensuring that I stay
+                            ahead in this rapidly evolving field.
+                        </p>
+                    </section>
+                </div>
+
+                <div class="md:col-span-4">
+                    <section class="sticky top-32">
+                        <h2 class="text-[10px] uppercase tracking-[0.4em] text-zinc-500 mb-10 font-bold">Education Path
+                        </h2>
+                        <div class="relative pl-8 space-y-10">
+                            <!-- Vertical Line -->
+                            <div class="absolute left-0 top-1 bottom-1 w-[1px] bg-zinc-900 overflow-hidden">
+                                <div
+                                    class="absolute top-0 left-0 w-full bg-gradient-to-b from-white to-transparent h-full animate-pulse">
+                                </div>
+                            </div>
+
+                            <!-- College -->
+                            <div class="relative">
+                                <div
+                                    class="absolute -left-[36.5px] top-1 w-4 h-4 rounded-full bg-black border-2 border-white z-10 transition-transform hover:scale-125">
+                                </div>
+                                <div>
+                                    <span class="text-[10px] text-zinc-600 uppercase tracking-widest font-bold">College
+                                        | 2022 - Pres</span>
+                                    <h3 class="text-sm font-heading font-bold text-white mt-1">Pateros Tech College</h3>
+                                    <p class="text-[10px] text-zinc-400 mt-1 italic">BSIT (Dean's Lister)</p>
+                                </div>
+                            </div>
+
+                            <!-- Senior High -->
+                            <div class="relative opacity-80">
+                                <div
+                                    class="absolute -left-[36.5px] top-1 w-4 h-4 rounded-full bg-black border-2 border-zinc-500 z-10 transition-transform hover:scale-125">
+                                </div>
+                                <div>
+                                    <span class="text-[10px] text-zinc-600 uppercase tracking-widest font-bold">SHS |
+                                        2020 - 2022</span>
+                                    <h3 class="text-sm font-heading font-bold text-white mt-1">Western Bicutan National
+                                        Highschool</h3>
+                                    <p class="text-[10px] text-zinc-400 mt-1 italic">CSS Strand (With Honors)</p>
+                                </div>
+                            </div>
+
+                            <!-- Junior High -->
+                            <div class="relative opacity-60">
+                                <div
+                                    class="absolute -left-[36.5px] top-1 w-4 h-4 rounded-full bg-black border-2 border-zinc-800 z-10">
+                                </div>
+                                <div>
+                                    <span class="text-[10px] text-zinc-600 uppercase tracking-widest font-bold">JHS |
+                                        2016 - 2020</span>
+                                    <h3 class="text-sm font-heading font-bold text-white mt-1">Western Bicutan National
+                                        Highschool</h3>
+                                    <p class="text-[10px] text-zinc-400 mt-1 italic">With Honors</p>
+                                </div>
+                            </div>
+
+                            <!-- Elem -->
+                            <div class="relative opacity-60">
+                                <div
+                                    class="absolute -left-[36.5px] top-1 w-4 h-4 rounded-full bg-black border-2 border-zinc-800 z-10">
+                                </div>
+                                <div>
+                                    <span class="text-[10px] text-zinc-600 uppercase tracking-widest font-bold">Elem |
+                                        2010 - 2016</span>
+                                    <h3 class="text-sm font-heading font-bold text-white mt-1">Tenement Elementary
+                                        School</h3>
+                                    <p class="text-[10px] text-zinc-400 mt-1 italic">With Honors</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <div class="md:col-span-8 pt-10 border-t border-white/5 grid grid-cols-1 md:grid-cols-2 gap-10">
+                    <section>
+                        <h2 class="text-[10px] uppercase tracking-[0.4em] text-zinc-500 mb-4 font-bold">Location
+                        </h2>
+                        <p class="text-zinc-300 text-sm">Taguig City, Metro Manila, Philippines</p>
+                    </section>
+
+                    <section>
+                        <h2 class="text-[10px] uppercase tracking-[0.4em] text-zinc-500 mb-4 font-bold">Contact</h2>
+                        <div class="flex flex-col gap-2">
+                            <a href="mailto:belinariorogeljhon@gmail.com"
+                                class="text-zinc-300 hover:text-white transition-colors text-sm break-all">belinariorogeljhon@gmail.com</a>
+                            <a href="contactform"
+                                class="text-white border-b border-white/20 hover:border-white transition-colors text-sm w-max pb-0.5">Contact
+                                Form</a>
+                        </div>
+                    </section>
+
+                    <section class="md:col-span-2">
+                        <h2 class="text-[10px] uppercase tracking-[0.4em] text-zinc-500 mb-4 font-bold">Focus
+                            Area
+                        </h2>
+                        <ul class="grid grid-cols-2 gap-x-4 gap-y-2 text-zinc-300 text-sm">
+                            <li class="flex items-center gap-2">
+                                <span class="w-1 h-1 bg-white rounded-full"></span>
+                                Web Dev
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="w-1 h-1 bg-white rounded-full"></span>
+                                Cybersecurity
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="w-1 h-1 bg-white rounded-full"></span>
+                                Mobile Apps
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="w-1 h-1 bg-white rounded-full"></span>
+                                IoT Solutions
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section class="md:col-span-2">
+                        <h2 class="text-[10px] uppercase tracking-[0.4em] text-zinc-500 mb-6 font-bold">Tools &
+                            Security Lab</h2>
+                        <div class="flex flex-wrap gap-2 md:gap-3">
+                            <img src="https://img.shields.io/badge/Kali%20Linux-557C94?style=for-the-badge&logo=kalilinux&logoColor=white"
+                                alt="Kali Linux" class="h-5 md:h-6">
+                            <img src="https://img.shields.io/badge/WSL-0078D4?style=for-the-badge&logo=windows-terminal&logoColor=white"
+                                alt="WSL Ubuntu" class="h-5 md:h-6">
+                            <img src="https://img.shields.io/badge/Nmap-4DABCF?style=for-the-badge&logo=nmap&logoColor=white"
+                                alt="Nmap" class="h-5 md:h-6">
+                            <img src="https://img.shields.io/badge/Wireshark-1679A7?style=for-the-badge&logo=wireshark&logoColor=white"
+                                alt="Wireshark" class="h-5 md:h-6">
+                            <img src="https://img.shields.io/badge/Metasploit-FF4F00?style=for-the-badge&logo=metasploit&logoColor=white"
+                                alt="Metasploit" class="h-5 md:h-6">
+                            <img src="https://img.shields.io/badge/VS%20Code-007ACC?style=for-the-badge&logo=visual-studio-code&logoColor=white"
+                                alt="VS Code" class="h-5 md:h-6">
+                            <img src="https://img.shields.io/badge/Hashcat-F4BF42?style=for-the-badge&logo=hashcat&logoColor=black"
+                                alt="Hashcat" class="h-5 md:h-6">
+                            <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=yellow"
+                                alt="Pentesting Python" class="h-5 md:h-6">
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+    <script type="module" src="js/main.js"></script>
+    <script>
+        document.body.style.opacity = '0';
+        window.addEventListener('load', () => {
+            gsap.to(document.body, { opacity: 1, duration: 1, ease: 'power2.out' });
+        });
+
+        // Voice Message Logic
+        const vmTrigger = document.getElementById('vm-trigger');
+        const vmAudio = document.getElementById('vm-audio');
+        const vmIcon = document.getElementById('vm-icon');
+        const vmStatus = document.getElementById('vm-status');
+        const vmPulse = document.getElementById('vm-pulse');
+        let isPlaying = false;
+
+        vmTrigger.addEventListener('click', () => {
+            if (!isPlaying) {
+                vmAudio.play();
+                isPlaying = true;
+                vmStatus.innerText = 'Now Playing';
+                vmIcon.innerHTML = '<rect x="6" y="6" width="4" height="12"></rect><rect x="14" y="6" width="4" height="12"></rect>';
+                vmPulse.classList.add('bg-green-500/20');
+            } else {
+                vmAudio.pause();
+                isPlaying = false;
+                vmStatus.innerText = 'Click to play';
+                vmIcon.innerHTML = '<path d="M8 5v14l11-7z" />';
+                vmPulse.classList.remove('bg-green-500/20');
+            }
+        });
+
+        vmAudio.addEventListener('ended', () => {
+            isPlaying = false;
+            vmStatus.innerText = 'Click to play';
+            vmIcon.innerHTML = '<path d="M8 5v14l11-7z" />';
+            vmPulse.classList.remove('bg-green-500/20');
+        });
+    </script>
+</body>
+
+</html>
