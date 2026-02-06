@@ -41,18 +41,26 @@ This is a **fully responsive digital portfolio** built to showcase my journey as
 
 ```
 portfolio/
-│
-├── index.html              # Main HTML file with embedded styles and scripts
-├── hero-bg.png            # Hero section background image
-├── README.md              # This file
-│
-└── assets/
-    ├── cert/              # Certification images
-    ├── dlh/               # PTC Digital Learning Hub screenshots
-    ├── img/               # General images
-    ├── poultryfi/         # Poultry-Fi IoT project images
-    ├── travouge/          # Travouge travel guide screenshots
-    └── whereintapat/      # Where-in-Tapat local guide screenshots
+├── api/                   # Serverless functions (Vercel Backend)
+│   └── send-message.js    # Secure form submission & Turnstile verification
+├── assets/                # Media & static assets
+│   ├── cert/              # Certification images
+│   ├── img/               # UI icons, backgrounds & assets
+│   └── [project-folders]  # Media for specific projects (Poultry-Fi, Travouge, etc.)
+├── css/                   # Styling
+│   └── styles.css         # Custom styles & Tailwind utilities
+├── js/                    # JavaScript modules
+│   ├── main.js            # Application entry & routing
+│   ├── ui.js              # UI component logic (Modals, Nav)
+│   ├── animations.js      # GSAP & ScrollTrigger logic
+│   └── data.js            # Project & certificate data
+├── index.html             # Landing page / Home
+├── projects.html          # Detailed projects collection
+├── certificates.html      # Professional certifications gallery
+├── contactform.html       # Interactive contact page with Turnstile
+├── thankyou.html          # Form submission confirmation page
+├── vercel.json            # Deployment & routing configuration (Clean URLs)
+└── README.md              # Project documentation
 ```
 
 ## 📦 Installation & Setup

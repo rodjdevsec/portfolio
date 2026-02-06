@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Message Sent</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='25' fill='%23000000'/><text x='50%25' y='55%25' dominant-baseline='middle' text-anchor='middle' fill='%23FFFFFF' font-family='Arial, sans-serif' font-weight='900' font-size='60'>R</text></svg>">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body class="bg-black text-white selection:bg-zinc-800 selection:text-white min-h-screen flex flex-col">
+    <div class="fixed inset-0 z-0 pointer-events-none radial-bg"></div>
+    <div class="fixed inset-0 z-[1] pointer-events-none opacity-[0.03] noise-bg"></div>
+
+    <main class="relative z-10 flex-grow flex items-center justify-center px-4">
+        <div class="text-center">
+            <div class="mb-8 flex justify-center">
+                <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center text-black">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                </div>
+            </div>
+            <h1 class="text-4xl md:text-5xl font-heading font-bold tracking-tight mb-4 uppercase">Message <span
+                    class="text-zinc-500 italic">Sent!</span></h1>
+            <p class="text-zinc-400 text-sm md:text-base max-w-sm mx-auto mb-10 leading-relaxed">
+                Thank you for reaching out. I've received your message and will get back to you as soon as possible.
+            </p>
+            <a href="index"
+                class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] px-8 py-4 bg-white text-black rounded-full hover:scale-105 transition-transform">
+                Back to Home
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+            </a>
+        </div>
+    </main>
+</body>
+
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='25' fill='%23000000'/><text x='50%25' y='55%25' dominant-baseline='middle' text-anchor='middle' fill='%23FFFFFF' font-family='Arial, sans-serif' font-weight='900' font-size='60'>R</text></svg>">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+</head>
+
+<body class="bg-black text-white selection:bg-zinc-800 selection:text-white min-h-screen flex flex-col">
+    <div class="fixed inset-0 z-0 pointer-events-none radial-bg"></div>
+    <div class="fixed inset-0 z-[1] pointer-events-none opacity-[0.03] noise-bg"></div>
+
+    <nav class="relative z-10 flex justify-end items-center px-6 py-8 md:px-12">
+        <a href="index" onclick="sessionStorage.setItem('scrollToContact', 'true');"
+            class="group flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.3em] text-zinc-500 hover:text-white transition-colors">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                stroke-linecap="round" stroke-linejoin="round" class="group-hover:-translate-x-1 transition-transform">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            Back
+        </a>
+    </nav>
+
+    <main class="relative z-10 flex-grow flex items-start justify-center px-4 pt-4 md:pt-10 pb-12">
+        <div class="w-full max-w-2xl">
+            <div class="mb-8">
+                <h1 class="text-4xl md:text-5xl font-heading font-bold tracking-tight mb-2">LET'S <span
+                        class="text-zinc-500 italic">CONNECT</span></h1>
+                <p class="text-zinc-400 text-xs md:text-sm leading-relaxed">
+                    Have a project in mind or just want to say hi? Feel free to send me a message.
+                </p>
+            </div>
+
+            <form id="contact-form" action="/api/send-message" method="POST" class="space-y-5">
+
+                <input type="text" name="_gotcha" style="display:none">
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div class="space-y-1.5">
+                        <label for="name" class="text-[10px] uppercase tracking-widest text-zinc-500 ml-1">Full
+                            Name</label>
+                        <input type="text" id="name" name="name" required placeholder="John Doe"
+                            class="w-full bg-zinc-900/50 border border-zinc-800 focus:border-white p-4 rounded-lg outline-none transition-colors text-sm">
+                    </div>
+                    <div class="space-y-1.5">
+                        <label for="email" class="text-[10px] uppercase tracking-widest text-zinc-500 ml-1">Email
+                            Address</label>
+                        <input type="email" id="email" name="email" required placeholder="john@example.com"
+                            class="w-full bg-zinc-900/50 border border-zinc-800 focus:border-white p-4 rounded-lg outline-none transition-colors text-sm">
+                    </div>
+                </div>
+
+                <div class="space-y-1.5">
+                    <label for="subject"
+                        class="text-[10px] uppercase tracking-widest text-zinc-500 ml-1">Subject</label>
+                    <input type="text" id="subject" name="subject" required placeholder="How can I help you?"
+                        class="w-full bg-zinc-900/50 border border-zinc-800 focus:border-white p-4 rounded-lg outline-none transition-colors text-sm">
+                </div>
+
+                <div class="space-y-1.5">
+                    <label for="message"
+                        class="text-[10px] uppercase tracking-widest text-zinc-500 ml-1">Message</label>
+                    <textarea id="message" name="message" required rows="4" placeholder="Tell me about your project..."
+                        class="w-full bg-zinc-900/50 border border-zinc-800 focus:border-white p-4 rounded-lg outline-none transition-colors text-sm resize-none"></textarea>
+                </div>
+
+                <div class="flex flex-col items-center gap-3 py-2">
+                    <div class="cf-turnstile" data-sitekey="0x4AAAAAACYH8WVfG8O0moc1" data-theme="dark"
+                        data-size="normal" data-callback="onTurnstileSuccess"></div>
+                    <p id="captcha-hint" class="text-[9px] uppercase tracking-widest text-zinc-600">Please complete the
+                        security check</p>
+                </div>
+
+                <button type="submit" id="submit-btn" disabled
+                    class="group w-full bg-white text-black font-bold py-4 rounded-lg uppercase tracking-widest text-xs hover:bg-zinc-200 transition-all flex items-center justify-center gap-3 disabled:opacity-20 disabled:cursor-not-allowed">
+                    Send Message
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round"
+                        class="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform">
+                        <line x1="7" y1="17" x2="17" y2="7"></line>
+                        <polyline points="7 7 17 7 17 17"></polyline>
+                    </svg>
+                </button>
+            </form>
+        </div>
+    </main>
+
+    <script>
+        const form = document.getElementById('contact-form');
+        const submitBtn = document.getElementById('submit-btn');
+        const captchaHint = document.getElementById('captcha-hint');
+
+        function onTurnstileSuccess(token) {
+            submitBtn.disabled = false;
+            captchaHint.innerHTML = "Security Check Passed";
+            captchaHint.classList.remove('text-zinc-600');
+            captchaHint.classList.add('text-green-500');
+        }
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const turnstileResponse = form.querySelector('[name="cf-turnstile-response"]').value;
+            if (!turnstileResponse) {
+                alert('Please complete the security check.');
+                return;
+            }
+
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = 'Sending...';
+
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData.entries());
+
+            try {
+                const response = await fetch('/api/send-message', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                if (response.ok) {
+                    window.location.href = 'thankyou';
+                } else {
+                    const result = await response.json();
+                    alert(result.error || "Error sending message.");
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = 'Send Message';
+                }
+            } catch (error) {
+                alert('Connection error.');
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = 'Send Message';
+            }
+        });
+    </script>
+</body>
+
+</html>
