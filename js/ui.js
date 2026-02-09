@@ -1,5 +1,11 @@
 import { state, config } from './config.js';
-import { projects, certificates } from './data.js';
+import { projects as staticProjects, certificates as staticCertificates } from './data.js';
+
+const projects = (JSON.parse(localStorage.getItem('portfolio_projects')) || staticProjects).map((p, i) => ({
+    ...p,
+    id: p.id ? Number(p.id) : (i + 1)
+}));
+const certificates = JSON.parse(localStorage.getItem('portfolio_certificates')) || staticCertificates;
 
 export const UI = {
     elements: {
@@ -51,7 +57,8 @@ export const UI = {
     renderProjects() {
         if (!this.elements.projectsContainer) return;
 
-        projects.forEach((project, index) => {
+        const homeProjects = projects.filter(p => p.showOnHome);
+        homeProjects.forEach((project, index) => {
             const isMobile = window.innerWidth < 768;
             const topOffset = isMobile ? 80 + (index * 10) : 100 + (index * 40);
 
@@ -89,7 +96,8 @@ export const UI = {
     renderCertificates() {
         if (!this.elements.certTrack) return;
 
-        certificates.forEach((cert, index) => {
+        const homeCerts = certificates.filter(c => c.showOnHome);
+        homeCerts.forEach((cert, index) => {
             const certHTML = `
                 <div class="process-card relative h-[35vh] md:h-[60vh] w-[90vw] md:w-[40vw] flex-shrink-0 bg-zinc-900 overflow-hidden group border border-white/10 cursor-pointer cert-trigger" data-img="${cert.image}">
                     <img src="${cert.image}" alt="${cert.title}" loading="lazy" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-40 group-hover:scale-110 transition-transform duration-700 ease-out">
@@ -175,7 +183,7 @@ export const UI = {
     },
 
     openProjectModal(projectId) {
-        const project = projects.find(p => p.id === projectId);
+        const project = projects.find(p => Number(p.id) === Number(projectId));
         if (!project) return;
 
         state.currentProject = project;

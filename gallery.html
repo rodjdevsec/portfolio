@@ -22,12 +22,80 @@
             transform: translateY(0);
         }
 
-        #calibrate-btn {
+        #gallery-splash {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            z-index: 200;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 1.5s cubic-bezier(0.4, 0, 0.2, 1), visibility 1.5s;
+        }
+
+        #gallery-splash.fade-out {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .splash-text {
+            font-size: 11px;
+            font-weight: 300;
+            text-transform: uppercase;
+            letter-spacing: 12px;
+            color: #fff;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(10px);
+            animation: splash-entry 3s forwards ease-out;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+        }
+
+        @keyframes splash-entry {
+            0% {
+                opacity: 0;
+                filter: blur(10px);
+                transform: translateY(20px) scale(0.95);
+                letter-spacing: 4px;
+            }
+
+            40% {
+                opacity: 1;
+                filter: blur(0);
+                transform: translateY(0) scale(1);
+                letter-spacing: 12px;
+            }
+
+            70% {
+                opacity: 1;
+                filter: blur(0);
+                transform: translateY(0) scale(1);
+                letter-spacing: 12px;
+            }
+
+            100% {
+                opacity: 0.8;
+                filter: blur(0);
+                transform: translateY(-2px) scale(1.01);
+                letter-spacing: 14px;
+            }
+        }
+
+        #gallery-controls {
             position: fixed;
             bottom: 30px;
             left: 24px;
             z-index: 100;
             display: none;
+            flex-direction: row;
+            gap: 24px;
+            align-items: center;
+        }
+
+        .control-btn {
             color: rgba(255, 255, 255, 0.4);
             font-size: 10px;
             text-transform: uppercase;
@@ -35,22 +103,30 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.2);
             padding-bottom: 2px;
             cursor: pointer;
-            transition: opacity 0.3s ease;
+            transition: all 0.3s ease;
+            background: none;
+            border-top: none;
+            border-left: none;
+            border-right: none;
+        }
+
+        .control-btn:active {
+            opacity: 0.5;
         }
 
         @media (max-width: 768px) {
-            #calibrate-btn {
-                display: block;
-            }
-
-            #calibrate-btn:active {
-                opacity: 0.5;
+            #gallery-controls {
+                display: flex;
             }
         }
     </style>
 </head>
 
 <body class="bg-black text-white font-['Inter'] m-0 p-0 w-full h-full overflow-hidden">
+
+    <div id="gallery-splash">
+        <div class="splash-text">Scroll to explore</div>
+    </div>
 
 
 
@@ -72,124 +148,30 @@
     <div id="canvas-container" class="fixed top-0 left-0 w-full h-full z-[1]"></div>
 
     <div id="ui-layer" class="fixed top-0 left-0 w-full h-full z-[2] pointer-events-none">
-
-        <div class="slide-content absolute pointer-events-auto w-[90%] md:w-[30%] md:max-w-[450px] left-[5%] md:left-[8%] bottom-[10%] md:bottom-auto md:top-[35%] flex flex-col items-start md:items-start text-left md:text-left"
-            id="slide-0">
-            <span
-                class="text-[0.7rem] uppercase tracking-[3px] text-[#666] mb-6 inline-block border-b border-[#333] pb-[5px]">01
-                / CC</span>
-            <div
-                class="font-['Inter'] text-[0.85rem] md:text-[0.9rem] font-light leading-[1.6] md:leading-[1.8] text-[#888] mb-8 md:mb-12 text-left md:text-justify tracking-wide">
-                Captured this moment right after we reconciled from a difficult time. It was her first time visiting
-                museums again, making the experience even more meaningful.
-            </div>
-            <div
-                class="grid grid-cols-2 md:grid-cols-[80px_1fr] gap-2 md:gap-y-[0.8rem] border-t border-[#333] pt-4 md:pt-[1.5rem] w-full">
-                <span
-                    class="text-[0.6rem] uppercase tracking-[2px] text-[#555] self-center text-left md:text-left pr-4 md:pr-0">Location</span>
-                <span class="text-[0.9rem] font-medium text-white text-left">National Museum, Manila</span>
-
-                <span
-                    class="text-[0.6rem] uppercase tracking-[2px] text-[#555] self-center text-left md:text-left pr-4 md:pr-0">Date</span>
-                <span class="text-[0.9rem] font-medium text-white text-left">Jan 2026</span>
-
-                <span
-                    class="text-[0.6rem] uppercase tracking-[2px] text-[#555] self-center text-left md:text-left pr-4 md:pr-0">Device</span>
-                <span class="text-[0.9rem] font-medium text-white text-left">iPhone 14 Pro Max</span>
-            </div>
-        </div>
-
-        <div class="slide-content absolute pointer-events-auto w-[90%] md:w-[30%] md:max-w-[450px] left-[5%] md:left-[8%] bottom-[10%] md:bottom-auto md:top-[35%] flex flex-col items-start md:items-start text-left md:text-left"
-            id="slide-1">
-            <span
-                class="text-[0.7rem] uppercase tracking-[3px] text-[#666] mb-6 inline-block border-b border-[#333] pb-[5px]">02
-                / Golf</span>
-            <div
-                class="font-['Inter'] text-[0.85rem] md:text-[0.9rem] font-light leading-[1.6] md:leading-[1.8] text-[#888] mb-8 md:mb-12 text-left md:text-justify tracking-wide">
-                A serene view of the historic golf course situated right across the National Museum. The lush greenery
-                offers a stark, peaceful contrast to the bustling city streets of Manila.
-            </div>
-            <div
-                class="grid grid-cols-2 md:grid-cols-[80px_1fr] gap-2 md:gap-y-[0.8rem] border-t border-[#333] pt-4 md:pt-[1.5rem] w-full">
-                <span
-                    class="text-[0.6rem] uppercase tracking-[2px] text-[#555] self-center text-left md:text-left pr-4 md:pr-0">Location</span>
-                <span class="text-[0.9rem] font-medium text-white text-left">Manila</span>
-
-                <span
-                    class="text-[0.6rem] uppercase tracking-[2px] text-[#555] self-center text-left md:text-left pr-4 md:pr-0">Date</span>
-                <span class="text-[0.9rem] font-medium text-white text-left">Jan 2026</span>
-
-                <span
-                    class="text-[0.6rem] uppercase tracking-[2px] text-[#555] self-center text-left md:text-left pr-4 md:pr-0">Device</span>
-                <span class="text-[0.9rem] font-medium text-white text-left">iPhone 14 Pro Max</span>
-            </div>
-        </div>
-
-        <div class="slide-content absolute pointer-events-auto w-[90%] md:w-[30%] md:max-w-[450px] left-[5%] md:left-[8%] bottom-[10%] md:bottom-auto md:top-[35%] flex flex-col items-start md:items-start text-left md:text-left"
-            id="slide-2">
-            <span
-                class="text-[0.7rem] uppercase tracking-[3px] text-[#666] mb-6 inline-block border-b border-[#333] pb-[5px]">03
-                / Intramuros</span>
-            <div
-                class="font-['Inter'] text-[0.85rem] md:text-[0.9rem] font-light leading-[1.6] md:leading-[1.8] text-[#888] mb-8 md:mb-12 text-left md:text-justify tracking-wide">
-                The iconic archway welcoming visitors into the Walled City. This historic gate stands as a timeless
-                portal to Manila's rich colonial past, marked by the 'Intramuros' sign atop the stone structure.
-            </div>
-            <div
-                class="grid grid-cols-2 md:grid-cols-[80px_1fr] gap-2 md:gap-y-[0.8rem] border-t border-[#333] pt-4 md:pt-[1.5rem] w-full">
-                <span
-                    class="text-[0.6rem] uppercase tracking-[2px] text-[#555] self-center text-left md:text-left pr-4 md:pr-0">Location</span>
-                <span class="text-[0.9rem] font-medium text-white text-left">Intramuros, Manila</span>
-
-                <span
-                    class="text-[0.6rem] uppercase tracking-[2px] text-[#555] self-center text-left md:text-left pr-4 md:pr-0">Date</span>
-                <span class="text-[0.9rem] font-medium text-white text-left">Jan 2026</span>
-
-                <span
-                    class="text-[0.6rem] uppercase tracking-[2px] text-[#555] self-center text-left md:text-left pr-4 md:pr-0">Device</span>
-                <span class="text-[0.9rem] font-medium text-white text-left">iPhone 14 Pro Max</span>
-            </div>
-        </div>
-
-        <div class="slide-content absolute pointer-events-auto w-[90%] md:w-[30%] md:max-w-[450px] left-[5%] md:left-[8%] bottom-[10%] md:bottom-auto md:top-[35%] flex flex-col items-start md:items-start text-left md:text-left"
-            id="slide-3">
-            <span
-                class="text-[0.7rem] uppercase tracking-[3px] text-[#666] mb-6 inline-block border-b border-[#333] pb-[5px]">04
-                / Natural History</span>
-            <div
-                class="font-['Inter'] text-[0.85rem] md:text-[0.9rem] font-light leading-[1.6] md:leading-[1.8] text-[#888] mb-8 md:mb-12 text-left md:text-justify tracking-wide">
-                The majestic facade of the National Museum of Natural History. Its neoclassical architecture stands
-                proudly, housing the country's rich biological and geological diversity within its renovated halls.
-            </div>
-            <div
-                class="grid grid-cols-2 md:grid-cols-[80px_1fr] gap-2 md:gap-y-[0.8rem] border-t border-[#333] pt-4 md:pt-[1.5rem] w-full">
-                <span
-                    class="text-[0.6rem] uppercase tracking-[2px] text-[#555] self-center text-left md:text-left pr-4 md:pr-0">Location</span>
-                <span class="text-[0.9rem] font-medium text-white text-left">National Museum of Natural History</span>
-
-                <span
-                    class="text-[0.6rem] uppercase tracking-[2px] text-[#555] self-center text-left md:text-left pr-4 md:pr-0">Date</span>
-                <span class="text-[0.9rem] font-medium text-white text-left">Jan 2026</span>
-
-                <span
-                    class="text-[0.6rem] uppercase tracking-[2px] text-[#555] self-center text-left md:text-left pr-4 md:pr-0">Device</span>
-                <span class="text-[0.9rem] font-medium text-white text-left">iPhone 14 Pro Max</span>
-            </div>
-        </div>
-
+        <!-- Dynamic slides will be injected here -->
     </div>
 
     <div
         class="scroll-hint fixed bottom-5 md:bottom-10 left-0 md:left-[50px] w-full md:w-auto text-center md:text-left text-[0.7rem] uppercase tracking-[2px] text-[#aaa]">
         Scroll to explore</div>
 
-    <button id="calibrate-btn" aria-label="Recalibrate Center">
-        <span>Recalibrate</span>
-    </button>
+    <div id="gallery-controls">
+        <button id="calibrate-btn" class="control-btn" aria-label="Recalibrate Center">
+            <span>Recalibrate</span>
+        </button>
+        <button id="gyro-toggle-btn" class="control-btn" aria-label="Toggle Gyroscope">
+            <span>Gyro Off</span>
+        </button>
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
-    <script>
+    <script type="module">
+        import { gallery as initialGallery } from './js/data.js';
+
+        // Load from localStorage if available, otherwise use initial data
+        const gallery = JSON.parse(localStorage.getItem('portfolio_gallery')) || initialGallery;
+
         let isMobile = window.innerWidth <= 768;
         let CONFIG = {};
         let totalGalleryWidth = 0;
@@ -197,12 +179,10 @@
         let galleryGroup = null;
         let camera = null;
 
-
-
         function updateConfig() {
             isMobile = window.innerWidth <= 768;
             CONFIG = {
-                slideCount: 4,
+                slideCount: gallery.length,
                 spacingX: isMobile ? 35 : 45,
                 pWidth: isMobile ? 12 : 14,
                 pHeight: isMobile ? 15 : 18,
@@ -230,7 +210,33 @@
             }
         }
 
+        function renderUISlides() {
+            const uiLayer = document.getElementById('ui-layer');
+            uiLayer.innerHTML = gallery.map((item, i) => `
+                <div class="slide-content absolute pointer-events-auto w-[90%] md:w-[30%] md:max-w-[450px] left-[5%] md:left-[8%] bottom-[10%] md:bottom-auto md:top-[35%] flex flex-col items-start md:items-start text-left md:text-left"
+                    id="slide-${i}">
+                    <span class="text-[0.7rem] uppercase tracking-[3px] text-[#666] mb-6 inline-block border-b border-[#333] pb-[5px]">
+                        ${String(i + 1).padStart(2, '0')} / ${item.title}
+                    </span>
+                    <div class="font-['Inter'] text-[0.85rem] md:text-[0.9rem] font-light leading-[1.6] md:leading-[1.8] text-[#888] mb-8 md:mb-12 text-left md:text-justify tracking-wide">
+                        ${item.description}
+                    </div>
+                    <div class="grid grid-cols-2 md:grid-cols-[80px_1fr] gap-2 md:gap-y-[0.8rem] border-t border-[#333] pt-4 md:pt-[1.5rem] w-full">
+                        <span class="text-[0.6rem] uppercase tracking-[2px] text-[#555] self-center text-left md:text-left pr-4 md:pr-0">Location</span>
+                        <span class="text-[0.75rem] md:text-[0.9rem] font-medium text-white text-left">${item.location}</span>
+
+                        <span class="text-[0.6rem] uppercase tracking-[2px] text-[#555] self-center text-left md:text-left pr-4 md:pr-0">Date</span>
+                        <span class="text-[0.75rem] md:text-[0.9rem] font-medium text-white text-left">${item.date}</span>
+
+                        <span class="text-[0.6rem] uppercase tracking-[2px] text-[#555] self-center text-left md:text-left pr-4 md:pr-0">Device</span>
+                        <span class="text-[0.75rem] md:text-[0.9rem] font-medium text-white text-left">${item.device}</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
         updateConfig();
+        renderUISlides();
 
         const scene = new THREE.Scene();
         scene.background = new THREE.Color(0x000000);
@@ -259,19 +265,10 @@
         const textureLoader = new THREE.TextureLoader();
         const planeGeo = new THREE.PlaneGeometry(CONFIG.pWidth, CONFIG.pHeight);
 
-        const images = [
-            'assets/gallery/cc.JPG',
-            'assets/gallery/golf.JPG',
-            'assets/gallery/intra.JPG',
-            'assets/gallery/museum.JPG'
-        ];
-
-
-
-        for (let i = 0; i < CONFIG.slideCount; i++) {
+        gallery.forEach((item, i) => {
             const group = new THREE.Group();
             group.position.set(i * CONFIG.spacingX, 0, 0);
-            const mat = new THREE.MeshBasicMaterial({ map: textureLoader.load(images[i]) });
+            const mat = new THREE.MeshBasicMaterial({ map: textureLoader.load(item.image) });
             const mesh = new THREE.Mesh(planeGeo, mat);
             const edges = new THREE.EdgesGeometry(planeGeo);
             const outline = new THREE.LineSegments(edges, new THREE.LineBasicMaterial({ color: 0x444444 }));
@@ -296,7 +293,7 @@
 
             galleryGroup.add(group);
             paintingGroups.push(group);
-        }
+        });
 
         galleryGroup.rotation.y = CONFIG.wallAngleY;
         galleryGroup.position.x = isMobile ? 0 : 8;
@@ -340,19 +337,41 @@
             mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
         });
 
+        let gyroEnabled = true;
         let initialOrientation = null;
 
+        function toggleGyro(e) {
+            if (e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+            gyroEnabled = !gyroEnabled;
+            const btn = document.getElementById('gyro-toggle-btn');
+            btn.querySelector('span').innerText = gyroEnabled ? 'Gyro Off' : 'Gyro On';
+
+            if (!gyroEnabled) {
+                mouse.x = 0;
+                mouse.y = 0;
+                initialOrientation = null;
+            }
+        }
+
         function calibrate(e) {
-            if (e) e.stopPropagation();
+            if (e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
             initialOrientation = null;
+            // Immediate feedback: center the view
+            mouse.x = 0;
+            mouse.y = 0;
         }
 
         document.getElementById('calibrate-btn').addEventListener('click', calibrate);
-        document.getElementById('calibrate-btn').addEventListener('touchstart', calibrate);
-
-
+        document.getElementById('gyro-toggle-btn').addEventListener('click', toggleGyro);
 
         function handleOrientation(event) {
+            if (!gyroEnabled) return;
             if (event.gamma === null || event.beta === null) return;
 
             if (!initialOrientation) {
@@ -393,6 +412,12 @@
 
         window.addEventListener('click', startExperience);
         window.addEventListener('touchstart', startExperience);
+
+        // Auto-fade splash screen after 2.5 seconds
+        setTimeout(() => {
+            const splash = document.getElementById('gallery-splash');
+            if (splash) splash.classList.add('fade-out');
+        }, 2500);
 
         function updateUI(scrollX) {
             const rawIndex = Math.round(scrollX / CONFIG.spacingX);
