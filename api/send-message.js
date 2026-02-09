@@ -14,8 +14,13 @@ export default async function handler(req, res) {
         });
 
         const verifyData = await verifyRes.json();
+        console.log('Turnstile Verification Receipt:', verifyData);
+
         if (!verifyData.success) {
-            return res.status(403).json({ error: 'Security verification failed' });
+            return res.status(403).json({
+                error: 'Security verification failed',
+                details: verifyData['error-codes'] || []
+            });
         }
 
         const formspreeUrl = `https://formspree.io/f/${process.env.FORMSPREE_ID}`;

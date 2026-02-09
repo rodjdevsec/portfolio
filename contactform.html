@@ -143,7 +143,11 @@
                     window.location.href = 'thankyou';
                 } else {
                     const result = await response.json();
-                    alert(result.error || "Error sending message.");
+                    let errMsg = result.error || "Error sending message.";
+                    if (result.details && result.details.length > 0) {
+                        errMsg += ` (Code: ${result.details.join(', ')})`;
+                    }
+                    alert(errMsg);
                     submitBtn.disabled = false;
                     submitBtn.innerHTML = 'Send Message';
                 }
