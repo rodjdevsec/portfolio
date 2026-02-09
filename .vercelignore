@@ -1,0 +1,4 @@
+# Exclude Admin tools from production deployment
+admin.html
+js/admin.js
+.env
